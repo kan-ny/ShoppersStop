@@ -5,7 +5,7 @@
 import { Fragment, useContext } from "react";
 import { CategoryContext } from "../../context/product.context";
 import ProductCard from "../../Component/product-card/product-card.component";
-import './shop.styles.scss';
+import {ProductContainer} from './shop.styles.jsx';
 import Preview from "../category-preview/category-preview.componet";
 
 const ShopApp = () => {

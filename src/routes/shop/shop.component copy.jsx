@@ -12,7 +12,7 @@ const ShopApp = () => {
     console.log('shop_content', products);
 
     return(<div className="product-container">
-        
+
         {/*  
         version 1
         {SHOP_DATA.map((product)=>{

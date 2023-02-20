@@ -30,15 +30,12 @@
 
 import { Fragment } from "react";
 import ProductCard from "../../Component/product-card/product-card.component";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { ProductContainer, CategoryTitle } from '../category/category.styles';
 
 const Preview = ({ title, products }) => {
   console.log("title, products", title, products);
-  const navigate = useNavigate();
-  const handleClick = () => {
-    navigate("/shop/" + title);
-  };
+ 
 
   return (
     <div>
@@ -48,11 +45,11 @@ const Preview = ({ title, products }) => {
       >
         {title.toUpperCase()}
       </Link>
-      <div className="product-container">
+      <ProductContainer>
         {products.map((product, index) =>
           index < 4 ? <ProductCard key={product.id} product={product} /> : null
         )}
-      </div>
+      </ProductContainer>
     </div>
   );
 };

@@ -4,7 +4,7 @@
 import { Fragment, useContext } from "react";
 import { CategoryContext } from "../../context/product.context";
 import ProductCard from "../../Component/product-card/product-card.component";
-import './category.styles.scss';
+import { ProductContainer, CategoryTitle } from './category.styles.jsx';
 import Preview from "../category-preview/category-preview.componet";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
@@ -23,7 +23,7 @@ const Category = () => {
 
     return(
         <Fragment >
-             <h2 className="category-title" >{category.toLocaleUpperCase()}</h2>
+             <CategoryTitle >{category.toLocaleUpperCase()}</CategoryTitle>
 
         {/*  
         version 1
@@ -45,11 +45,11 @@ const Category = () => {
     {
 
         productsData && 
-            <div className="product-container">
+            <ProductContainer>
             {productsData.map((product, index) =>
              <ProductCard key={product.id} product={product} />
             )}
-            </div>
+            </ProductContainer>
             
     }
 

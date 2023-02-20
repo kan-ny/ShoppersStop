@@ -1,17 +1,17 @@
-import './cart-dropdown.styles.scss';
+import { ItemContainer, ItemImg, Details} from './cart-dropdown.styles.jsx';
 
 const CartItem = ({product}) => {
 
     const {name, quantity, price, imageUrl} = product;
 
     return(<div>
-        <div className='itemContainer'>
-        <img className='itemImg' src={imageUrl} alt={name} />
-        <div className='details' >
+        <ItemContainer>
+        <ItemImg className='itemImg' src={imageUrl} alt={name} />
+        <Details >
             <h2 className='name'>{name}</h2>
             <span className='quanity'>{quantity} X ${price}</span>
-        </div>
-        </div>
+        </Details>
+        </ItemContainer>
       
     </div>);
 

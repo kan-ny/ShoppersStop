@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { CartContent } from "../../context/cart.content";
 import Button from "../button/Button.component";
-import "./checkoutTable.styles.scss";
+import { ImgComp } from "./checkoutTable.styles.jsx";
 
 const CheckoutTable = () => {
   const { cartItem, total, increaseDecrease, removeItem } = useContext(CartContent);
@@ -20,7 +20,7 @@ const CheckoutTable = () => {
           return (
             <tr key={index}>
               <td>
-                <img className="img" src={ele.imageUrl} alt={ele.name} />
+                <ImgComp src={ele.imageUrl} alt={ele.name} />
               </td>
               <td>{ele.name}</td>
               <td>

@@ -1,4 +1,7 @@
-.cart-dropdown-container {
+import styled from 'styled-components';
+import { BaseButton, GoogleSign, Inverted } from '../button/button.styles'; 
+
+export const CartDropdownContainer = styled.div` 
   position: absolute;
   width: 240px;
   // height: 340px;
@@ -15,36 +18,39 @@
     font-size: 18px;
     margin: 50px auto;
   }
- 
 
-  .cart-items {
-    height: 240px;
-    display: flex;
-    flex-direction: column;
-    overflow: scroll;
-  }
-
-  button {
+  ${ BaseButton },
+  ${ GoogleSign },
+  ${ Inverted } {
     margin-top: auto;
   }
-}
+`;
 
-.itemContainer{
+
+export const CartItems = styled.div`
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+`;
+
+ export const ItemContainer = styled.div`
   width: 100%;
   height: 90px;
   display: flex;
   margin: 10px 0px 10px 0px;
+`;
 
-  .itemImg {
+ export const ItemImg = styled.img`
     width: 30%;
-  }
+  `;
 
-  .details{
+ export const Details = styled.div`
     width: 70%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     padding-left: 20px;
-  }
-}
+`;
+

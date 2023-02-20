@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import FormInput from "../../Component/from-input/form-input.component";
-import Button from "../../Component/button/Button.component";
+import Button, { BUTTON_TYPE } from "../../Component/button/Button.component";
 import { signInAuthWithEmainAndPassword, signInWithGooglePopup } from "../../utils/firebase.utils";
-import './signin.styles.scss';
+import { SignInContainer, ButtonsContainer } from './signin.styles.jsx';
 
 import { UserContext } from "../../context/user.context";
 
@@ -49,7 +49,7 @@ const Signin = () => {
 
 
   return (
-    <div className="sign-in-container">
+    <SignInContainer>
 
 <h2>Already Have an account ?</h2>
             <span>Sign in with your email and password</span> 
@@ -71,13 +71,12 @@ const Signin = () => {
           required
           label={"password"}
         />
-        <div  className="buttons" >
-
-        <Button children="Login" type="submit" />
-        <Button type="button" onClick={signinWithGoogle} children={"Sign In With Google"} btype="google" />
-        </div>
+        <ButtonsContainer>
+          <Button children="Login" type="submit" />
+          <Button type="button" onClick={signinWithGoogle} children={"Sign In With Google"} btype={BUTTON_TYPE.google} />
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 };
 

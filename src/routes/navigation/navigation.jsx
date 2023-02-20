@@ -1,7 +1,7 @@
 import { Outlet, Link } from 'react-router-dom';
 import { Fragment, useContext  } from 'react'; 
 import { ReactComponent as Logo}  from '../../assets/crown.svg';
-import './navigation.styles.scss';
+import { NavigationDiv, NavLinksContainer, RouterLink } from './navigation.styles.jsx';
 import { UserContext } from '../../context/user.context';
 import { userSignOut } from '../../utils/firebase.utils';
 import CartIcon from '../../Component/cart-icon/cart-icon.component';
@@ -26,22 +26,22 @@ const Navigation = () => {
     console.log('nav copmp loginUser ', loginUser);
     return (
         <div>
-            <div className='navigation' > 
-                <Link to={'/'} className='logo-container' >
+            <NavigationDiv > 
+                <RouterLink to={'/'} >
                     {/* <div className='logo'></div> */}
                     <Logo />
                     {/* <p> Home </p> */}
-                </Link>
+                </RouterLink>
             
-            <div className='nav-links-container'> 
+            <NavLinksContainer> 
                 <Link  to={'/shop'}  className='nav-link' >
                     <p > Shop </p>
                 </Link>
-            </div>
+            </NavLinksContainer>
 
             { loginUser !== null ?
 
-            <div className='nav-links-container'> 
+            <NavLinksContainer> 
                 {/* <Link className='nav-link' >
                     <p> { loginUser.email } </p>
                 </Link> */}
@@ -51,20 +51,20 @@ const Navigation = () => {
                 </Link>
 
 
-            </div>
+            </NavLinksContainer>
 
             :
-            <div className='nav-links-container'> 
+            <NavLinksContainer> 
             <Link to={'/auth'}  className='nav-link' >
                     <p> Signin </p>
             </Link>
-            </div>
+            </NavLinksContainer>
             }
           
                 <CartIcon  />
                 {/* <CartIcon otherprops={()=>handelDropDown} /> */}
 
-            </div>
+            </NavigationDiv>
             {
                 cart_dropdown ?
                 <CartDropdown />

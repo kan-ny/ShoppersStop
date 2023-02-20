@@ -1,14 +1,28 @@
 // 3 buttons 
-import './button.styles.scss';
+import { BaseButton, GoogleSign, Inverted } from './button.styles.jsx';
 
-const BUTTON_TYPE  = {
+
+export const BUTTON_TYPE  = {
+    base: 'base',
     google: 'google-sign-in',
     inverted: 'inverted'
-}
+};
 
-const Button = ({children, btype="inverted", ...otherprops}) => {
+const getButton = (btype = 'base') => 
+    ({
+        [BUTTON_TYPE.base]: BaseButton,
+        [BUTTON_TYPE.google]: GoogleSign,
+        [BUTTON_TYPE.inverted]: Inverted
+    }[btype]);
 
-    return <button {...otherprops} className={`button-container ${BUTTON_TYPE[btype]}`} >{children}</button>
+
+const Button = ({children, btype, ...otherprops}) => {
+    
+    const CustomButton = getButton(btype);
+    return <CustomButton {...otherprops} >{children}</CustomButton>
+
+    // return <button {...otherprops} className={`button-container ${BUTTON_TYPE[btype]}`} >{children}</button>
+    
 
 }
 
