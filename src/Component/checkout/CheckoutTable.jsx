@@ -4,7 +4,7 @@ import Button from "../button/Button.component";
 import { ImgComp } from "./checkoutTable.styles.jsx";
 
 const CheckoutTable = () => {
-  const { cartItem, total, increaseDecrease, removeItem } = useContext(CartContent);
+  const { cartItem, total, addCartItem, decreaseItem, removeItem } = useContext(CartContent);
   return (
     <div>
       <table>
@@ -25,11 +25,11 @@ const CheckoutTable = () => {
               <td>{ele.name}</td>
               <td>
                 {" "}
-                <Button onClick={() => increaseDecrease(ele, 1)}>
+                <Button onClick={() => addCartItem( ele )}>
                   {" "}
                   +{" "}
                 </Button>{" "}
-                {ele.quantity} <Button onClick={() => increaseDecrease(ele, -1)}> - </Button>{" "}
+                {ele.quantity} <Button onClick={() => decreaseItem(ele, -1)}> - </Button>{" "}
               </td>
               <td> {ele.price * ele.quantity } </td>
               <td onClick={(()=>   removeItem(ele) )}> X </td>
