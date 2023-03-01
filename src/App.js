@@ -1,4 +1,6 @@
 // import { Fragment } from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Directive from '../src/Component/directory';
 import  Navigation  from './routes/navigation/navigation';
@@ -6,6 +8,8 @@ import  Navigation  from './routes/navigation/navigation';
 import Authentication from './routes/authentication/authentication';
 import ShopRoutes from './routes/shop/shop-route.component';
 import Checkout from './Component/checkout/Checkout';
+import { onAuthStateListiener } from './utils/firebase.utils';
+import { userAction } from './store/userReducer/user-action';
 
 const SomeApp = () => {
     return (
@@ -16,6 +20,16 @@ const SomeApp = () => {
 }
 
 const App = () => {  
+    const dispatch =  useDispatch();
+
+    useEffect(()=>{
+        const unsubscribe = onAuthStateListiener((user)=>{
+            console.log('user login status', user);
+            dispatch(userAction(user));
+        });
+        
+        return unsubscribe;
+    }, []);
 
    return (
     <Routes>

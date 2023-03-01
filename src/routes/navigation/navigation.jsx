@@ -8,12 +8,15 @@ import CartIcon from '../../Component/cart-icon/cart-icon.component';
 import CartDropdown from '../../Component/cart-dropdown/cart-dropdown';
 
 import { CartContent } from '../../context/cart.content';
+import { useSelector } from 'react-redux';
 
 const Navigation = () => {
 
     const { cart_dropdown } = useContext(CartContent);
+    const {loginUser} = useSelector((state => state.user));
     
-    const  { loginUser, setLoginUser } = useContext(UserContext);
+    // const  { loginUser, setLoginUser } = useContext(UserContext);
+
     const logout = async () => {
         const res = await userSignOut();
         // if(res === undefined ){

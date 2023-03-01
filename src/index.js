@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
+import {Provider } from 'react-redux';
+import { store } from './store/store';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
@@ -15,14 +17,16 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
     <BrowserRouter >
-      <UserProvider>
+    <Provider store={store} >
+      {/* <UserProvider> */}
         <CategoryProvider >
           <CartProvider >
             <App />
           </CartProvider>
         </CategoryProvider>
-      </UserProvider>
-    </BrowserRouter>
+        </Provider>
+      {/* </UserProvider> */}
+    // </BrowserRouter>
   // </React.StrictMode>
 );
 
