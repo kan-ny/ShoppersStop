@@ -9,11 +9,14 @@ import CartDropdown from '../../Component/cart-dropdown/cart-dropdown';
 
 import { CartContent } from '../../context/cart.content';
 import { useSelector } from 'react-redux';
+import { userSelector } from '../../store/userReducer/user-selector';
+import { contentSelector } from '../../store/contentReducer/content-selector';
 
 const Navigation = () => {
 
-    const { cart_dropdown } = useContext(CartContent);
-    const {loginUser} = useSelector((state => state.user));
+    // const { cart_dropdown } = useContext(CartContent);
+    const { cart_dropdown } = useSelector(contentSelector);
+    const {loginUser} = useSelector(userSelector);
     
     // const  { loginUser, setLoginUser } = useContext(UserContext);
 

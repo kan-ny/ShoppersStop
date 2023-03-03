@@ -20,9 +20,9 @@ root.render(
     <Provider store={store} >
       {/* <UserProvider> */}
         <CategoryProvider >
-          <CartProvider >
+          {/* <CartProvider > */}
             <App />
-          </CartProvider>
+          {/* </CartProvider> */}
         </CategoryProvider>
         </Provider>
       {/* </UserProvider> */}

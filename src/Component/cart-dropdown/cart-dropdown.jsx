@@ -5,14 +5,20 @@ import { CartDropdownContainer, CartItems} from './cart-dropdown.styles.jsx';
 import { useNavigate } from 'react-router-dom';
 
 import CartItem from './cart-item.component';
+import { useDispatch, useSelector } from 'react-redux';
+import { contentSelector } from '../../store/contentReducer/content-selector';
+import { cartDropdownAction } from '../../store/contentReducer/content-action';
 
 
 const CartDropdown = () => {
-    const { cartItem, set_cart_dropdown } = useContext(CartContent);
+    const dispatch = useDispatch();
+    // const { cartItem, set_cart_dropdown } = useContext(CartContent);
+    const { cartItem } = useSelector(contentSelector);
     const navigate = useNavigate();
     
     const handleCheckout = () =>{
-        set_cart_dropdown(false);
+        // set_cart_dropdown(false);
+        dispatch(cartDropdownAction(false));
         navigate('/checkout');   
     }
 
