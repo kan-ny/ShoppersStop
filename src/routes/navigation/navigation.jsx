@@ -13,14 +13,8 @@ import { userSelector } from '../../store/userReducer/user-selector';
 import { contentDropdown } from '../../store/contentReducer/content-selector';
 import { setCategoryData } from '../../store/categoryReducer/category-action';
 import { getCollectionAndDoc } from '../../utils/firebase.utils';
-import { setCategoryDataAsync } from '../../store/categoryReducer/category-action';
-
-// redux saga
-import { categoryActionstart } from '../../store/categoryReducer/category-action';
-import { signout_start } from '../../store/userReducer/user-action';
 
 const Navigation = () => {
-    const dispatch = useDispatch();
 
     // const { cart_dropdown } = useContext(CartContent);
     const  cart_dropdown  = useSelector( contentDropdown );
@@ -28,32 +22,25 @@ const Navigation = () => {
     
     // const  { loginUser, setLoginUser } = useContext(UserContext);
 
-    const logout = () => {
-        // const res = await userSignOut();
-        // // if(res === undefined ){
-        // //     setLoginUser(null);
-        // // }
-        // console.log(res);
+    const logout = async () => {
+        const res = await userSignOut();
+        // if(res === undefined ){
+        //     setLoginUser(null);
+        // }
+        console.log(res);
 
-        // redux saga
-        dispatch(signout_start());
+        // // redux saga
+        // dispatch(signout_start());
     }
 
 
+    const dispatch = useDispatch();
     useEffect(()=>{
-        // const getCategoryMap = async () => {
-        //     const categoryData = await getCollectionAndDoc();
-        //     dispatch( setCategoryData(categoryData));
-        // };
-        // getCategoryMap();
-
-
-        // redux thunk
-        // dispatch(setCategoryDataAsync());
-
-
-        // redux saga
-        dispatch(categoryActionstart());
+        const getCategoryMap = async () => {
+            const categoryData = await getCollectionAndDoc();
+            dispatch( setCategoryData(categoryData));
+        };
+        getCategoryMap();
     },[])
   
     return (

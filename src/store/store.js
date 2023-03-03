@@ -17,12 +17,12 @@ import { rootSaga } from './root-saga';
 //     reducers,
 // );
 
-// const middleWare = [ process.env.NODE_ENV === 'development' && logger, thunk].filter(Boolean);
+const middleWare = [ process.env.NODE_ENV === 'development' && logger, thunk].filter(Boolean);
 
 
 
-const middlewareSaga = createSagaMiddleware();
-const middleWare = [ process.env.NODE_ENV === 'development' && logger, middlewareSaga].filter(Boolean);
+// const middlewareSaga = createSagaMiddleware();
+// const middleWare = [ process.env.NODE_ENV === 'development' && logger, middlewareSaga].filter(Boolean);
 
 
 // const composedEnhancer = compose( applyMiddleware({...middleWare}) );
@@ -41,7 +41,7 @@ const persistReducer_ = persistReducer(persistConfig, rootReducer);
 // export const store = createStore(rootReducer , undefined, applyMiddleware(logger));
 export const store = createStore(persistReducer_ , undefined, composedEnhancer( applyMiddleware(...middleWare)) );
 
-middlewareSaga.run(rootSaga);
+// middlewareSaga.run(rootSaga);
 export const persistStore_ = persistStore(store);
 
 
