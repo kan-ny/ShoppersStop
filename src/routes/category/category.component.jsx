@@ -9,12 +9,14 @@ import Preview from "../category-preview/category-preview.componet";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
-
+import { useSelector } from 'react-redux';
+import { getCategoriesData } from "../../store/categoryReducer/category-selector";
 
 const Category = () => {
-
-    const { category_data } = useContext( CategoryContext );
+    const category_data = useSelector(getCategoriesData);
+    // const { category_data } = useContext( CategoryContext );
     const [productsData, setProducts] = useState([]);
+    
     const { category } = useParams(); 
     useEffect(()=>{
         setProducts(category_data[category]);

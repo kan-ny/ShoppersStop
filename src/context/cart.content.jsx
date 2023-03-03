@@ -147,10 +147,8 @@ export const additem_ = (list, payload, value= 1) =>{
  
 export const CartReducer = (state, action) => {
     const { type, payload } = action;
-    console.log('CartReducer reduce');
     switch(type){
         case CART_TYPES.ADD_ITEM:
-            console.log('CartReducer ADD_ITEM');
             return {
                 ...state,
                 cartItem: additem_([...state.cartItem], payload),
@@ -158,7 +156,6 @@ export const CartReducer = (state, action) => {
                 count: getCount([...state.cartItem])
             } 
         case CART_TYPES.REMOVE_ITEM:
-            console.log('CartReducer REMOVE_ITEM');
             // the amount is no
 
             const x = {
@@ -173,13 +170,11 @@ export const CartReducer = (state, action) => {
 
 
         case CART_TYPES.CART_DROPDOWN:
-            console.log('CartReducer CART_DROPDOWN');
             return {
                 ...state,
                 cart_dropdown: payload
             }
         case CART_TYPES.DECREASE_ITEM:
-            console.log('CartReducer DECREASE_ITEM');
             return {
                 ...state,
                 cartItem: additem_([...state.cartItem], payload, -1),

@@ -25,7 +25,7 @@ export const CategoryProvider = ({children})=> {
         // call to get Data from firebase
         const getCategoryMap = async () => {
             const categoryData = await getCollectionAndDoc();
-            set_shop_content(categoryData);
+            // set_shop_content(categoryData);
         }
         getCategoryMap();
     }, []);

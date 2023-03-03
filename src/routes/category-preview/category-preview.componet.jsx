@@ -34,9 +34,6 @@ import { Link } from "react-router-dom";
 import { ProductContainer, CategoryTitle } from '../category/category.styles';
 
 const Preview = ({ title, products }) => {
-  console.log("title, products", title, products);
- 
-
   return (
     <div>
       <Link

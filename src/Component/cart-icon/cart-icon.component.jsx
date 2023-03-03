@@ -5,12 +5,14 @@ import { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux'; 
 import { cartDropdownAction } from '../../store/contentReducer/content-action';
 import { useDispatch } from 'react-redux'; 
-import { contentSelector } from '../../store/contentReducer/content-selector';
+import { contentCount, contentDropdown } from '../../store/contentReducer/content-selector';
 
 
 const CartIcon = () => {
     const dispatch = useDispatch();
-    const { cart_dropdown, count }  = useSelector(contentSelector);
+    const cart_dropdown = useSelector(contentDropdown);
+    const count = useSelector(contentCount);
+    
     const {  cartItem } = useContext(CartContent); 
     const [ itemCount, setItemCount ] = useState(0);
 
@@ -22,10 +24,8 @@ const CartIcon = () => {
     //     setItemCount(count);
     // }, [cartItem]);
 
-    console.log('count', count);
 
     const onC = () => {
-        console.log('cart_dropdown....',cart_dropdown);
         // set_cart_dropdown(!cart_dropdown);
         dispatch(cartDropdownAction(!cart_dropdown));
     }

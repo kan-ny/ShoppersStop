@@ -38,7 +38,6 @@ export const getCount = (list = [])=> {
 }
 
 export const incOrDec = (list =[], payload) =>{
-    console.log('incOrDec', payload);
     return list.map(ele=>{
         const i = indexOfItem(list, payload);
         if(i !== -1){

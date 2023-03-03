@@ -24,7 +24,6 @@ const Signin = () => {
 
   const handelSubmit = async (event) => {
     event.preventDefault();
-    console.log("submit", email, password);
 
     try {
       const auth = await signInAuthWithEmainAndPassword(email, password);

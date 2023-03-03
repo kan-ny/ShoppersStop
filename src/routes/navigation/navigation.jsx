@@ -1,5 +1,5 @@
 import { Outlet, Link } from 'react-router-dom';
-import { Fragment, useContext  } from 'react'; 
+import { Fragment, useContext, useEffect  } from 'react'; 
 import { ReactComponent as Logo}  from '../../assets/crown.svg';
 import { NavigationDiv, NavLinksContainer, RouterLink } from './navigation.styles.jsx';
 import { UserContext } from '../../context/user.context';
@@ -8,14 +8,16 @@ import CartIcon from '../../Component/cart-icon/cart-icon.component';
 import CartDropdown from '../../Component/cart-dropdown/cart-dropdown';
 
 import { CartContent } from '../../context/cart.content';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { userSelector } from '../../store/userReducer/user-selector';
-import { contentSelector } from '../../store/contentReducer/content-selector';
+import { contentDropdown } from '../../store/contentReducer/content-selector';
+import { setCategoryData } from '../../store/categoryReducer/category-action';
+import { getCollectionAndDoc } from '../../utils/firebase.utils';
 
 const Navigation = () => {
 
     // const { cart_dropdown } = useContext(CartContent);
-    const { cart_dropdown } = useSelector(contentSelector);
+    const  cart_dropdown  = useSelector( contentDropdown );
     const {loginUser} = useSelector(userSelector);
     
     // const  { loginUser, setLoginUser } = useContext(UserContext);
@@ -28,8 +30,16 @@ const Navigation = () => {
         console.log(res);
     }
 
+
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        const getCategoryMap = async () => {
+            const categoryData = await getCollectionAndDoc();
+            dispatch( setCategoryData(categoryData));
+        };
+        getCategoryMap();
+    },[])
   
-    console.log('nav copmp loginUser ', loginUser);
     return (
         <div>
             <NavigationDiv > 

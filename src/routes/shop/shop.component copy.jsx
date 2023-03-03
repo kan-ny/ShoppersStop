@@ -9,7 +9,6 @@ import './shop.styles.scss';
 const ShopApp = () => {
 
     const { products } = useContext(ProductsContext);
-    console.log('shop_content', products);
 
     return(<div className="product-container">
 
