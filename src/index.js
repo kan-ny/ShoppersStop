@@ -13,6 +13,9 @@ import { CategoryProvider } from './context/product.context';
 
 import { CartProvider } from './context/cart.content';
 
+import { PersistGate } from 'redux-persist/integration/react';  
+import { persistStore_ } from './store/store';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
@@ -21,7 +24,9 @@ root.render(
       {/* <UserProvider> */}
         {/* <CategoryProvider > */}
           {/* <CartProvider > */}
+          <PersistGate loading={null} persistor={persistStore_} >
             <App />
+          </PersistGate>
           {/* </CartProvider> */}
         {/* </CategoryProvider> */}
         </Provider>
