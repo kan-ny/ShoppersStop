@@ -13,6 +13,7 @@ import { userSelector } from '../../store/userReducer/user-selector';
 import { contentDropdown } from '../../store/contentReducer/content-selector';
 import { setCategoryData } from '../../store/categoryReducer/category-action';
 import { getCollectionAndDoc } from '../../utils/firebase.utils';
+import { setCategoryDataAsync } from '../../store/categoryReducer/category-action';
 
 const Navigation = () => {
 
@@ -33,11 +34,13 @@ const Navigation = () => {
 
     const dispatch = useDispatch();
     useEffect(()=>{
-        const getCategoryMap = async () => {
-            const categoryData = await getCollectionAndDoc();
-            dispatch( setCategoryData(categoryData));
-        };
-        getCategoryMap();
+        // const getCategoryMap = async () => {
+        //     const categoryData = await getCollectionAndDoc();
+        //     dispatch( setCategoryData(categoryData));
+        // };
+        // getCategoryMap();
+
+        dispatch(setCategoryDataAsync());
     },[])
   
     return (

@@ -7,14 +7,16 @@ import { CategoryContext } from "../../context/product.context";
 import ProductCard from "../../Component/product-card/product-card.component";
 import {ProductContainer} from './shop.styles.jsx';
 import Preview from "../category-preview/category-preview.componet";
-import { getCategoriesData } from "../../store/categoryReducer/category-selector";
+import { getCategoriesData, isLoading } from "../../store/categoryReducer/category-selector";
 import { useSelector} from 'react-redux';
+import Spinner from "../../Component/spinner/spinner";
 
 const ShopApp = () => {
 
     // const { category_data } = useContext( CategoryContext );
 
     const category_data = useSelector(getCategoriesData);
+    const loading = useSelector(isLoading);
 
     return(
         <Fragment >
@@ -37,6 +39,7 @@ const ShopApp = () => {
             })} */}
 
     {
+        loading ? <Spinner /> :
         Object.keys(category_data).map((title, index) => {
             
             return ( 
