@@ -15,6 +15,9 @@ import { setCategoryData } from '../../store/categoryReducer/category-action';
 import { getCollectionAndDoc } from '../../utils/firebase.utils';
 import { setCategoryDataAsync } from '../../store/categoryReducer/category-action';
 
+// redux saga
+import { categoryActionstart } from '../../store/categoryReducer/category-action';
+
 const Navigation = () => {
 
     // const { cart_dropdown } = useContext(CartContent);
@@ -40,7 +43,13 @@ const Navigation = () => {
         // };
         // getCategoryMap();
 
-        dispatch(setCategoryDataAsync());
+
+        // redux thunk
+        // dispatch(setCategoryDataAsync());
+
+
+        // redux saga
+        dispatch(categoryActionstart());
     },[])
   
     return (

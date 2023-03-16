@@ -38,7 +38,7 @@ const Preview = ({ title, products }) => {
     <div>
       <Link
         to={title}
-        style={{ textDecoration: "none", "font-size": "25px", cursor: "pointer", "font-weight": "800" }}
+        style={{ textDecoration: "none", "fontSize": "25px", cursor: "pointer", "fontWeight": "800" }}
       >
         {title.toUpperCase()}
       </Link>

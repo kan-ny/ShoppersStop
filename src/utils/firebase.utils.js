@@ -13,13 +13,24 @@ import { getAuth, signInWithPopup,  signInWithRedirect,
 import { getFirestore, doc, getDoc, setDoc, collection, writeBatch, query, getDocs } from "firebase/firestore";
 
 // Your web app's Firebase configuration
+// // kanny8
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAlDr4RK6cEZ9mNHgtcSJpxRoiW1BKl1v0",
+//   authDomain: "learnreact-a0d4f.firebaseapp.com",
+//   projectId: "learnreact-a0d4f",
+//   storageBucket: "learnreact-a0d4f.appspot.com",
+//   messagingSenderId: "861874492149",
+//   appId: "1:861874492149:web:855da33aca309676122bbc"
+// };
+
+// kanny027
 const firebaseConfig = {
-  apiKey: "AIzaSyAlDr4RK6cEZ9mNHgtcSJpxRoiW1BKl1v0",
-  authDomain: "learnreact-a0d4f.firebaseapp.com",
-  projectId: "learnreact-a0d4f",
-  storageBucket: "learnreact-a0d4f.appspot.com",
-  messagingSenderId: "861874492149",
-  appId: "1:861874492149:web:855da33aca309676122bbc"
+  apiKey: "AIzaSyB5lcC4w4g5QPte41lLZKes6RK6MwUeENw",
+  authDomain: "basicreact-6fda3.firebaseapp.com",
+  projectId: "basicreact-6fda3",
+  storageBucket: "basicreact-6fda3.appspot.com",
+  messagingSenderId: "611930053636",
+  appId: "1:611930053636:web:1d153cc4a5f85d77ef6951"
 };
 
 // Initialize Firebase
