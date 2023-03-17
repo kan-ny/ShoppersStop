@@ -13,25 +13,25 @@ import { getAuth, signInWithPopup,  signInWithRedirect,
 import { getFirestore, doc, getDoc, setDoc, collection, writeBatch, query, getDocs } from "firebase/firestore";
 
 // Your web app's Firebase configuration
-// // kanny8
-// const firebaseConfig = {
-//   apiKey: "AIzaSyAlDr4RK6cEZ9mNHgtcSJpxRoiW1BKl1v0",
-//   authDomain: "learnreact-a0d4f.firebaseapp.com",
-//   projectId: "learnreact-a0d4f",
-//   storageBucket: "learnreact-a0d4f.appspot.com",
-//   messagingSenderId: "861874492149",
-//   appId: "1:861874492149:web:855da33aca309676122bbc"
-// };
-
-// kanny027
+// kanny8
 const firebaseConfig = {
-  apiKey: "AIzaSyB5lcC4w4g5QPte41lLZKes6RK6MwUeENw",
-  authDomain: "basicreact-6fda3.firebaseapp.com",
-  projectId: "basicreact-6fda3",
-  storageBucket: "basicreact-6fda3.appspot.com",
-  messagingSenderId: "611930053636",
-  appId: "1:611930053636:web:1d153cc4a5f85d77ef6951"
+  apiKey: "AIzaSyAlDr4RK6cEZ9mNHgtcSJpxRoiW1BKl1v0",
+  authDomain: "learnreact-a0d4f.firebaseapp.com",
+  projectId: "learnreact-a0d4f",
+  storageBucket: "learnreact-a0d4f.appspot.com",
+  messagingSenderId: "861874492149",
+  appId: "1:861874492149:web:855da33aca309676122bbc"
 };
+
+// // kanny027
+// const firebaseConfig = {
+//   apiKey: "AIzaSyB5lcC4w4g5QPte41lLZKes6RK6MwUeENw",
+//   authDomain: "basicreact-6fda3.firebaseapp.com",
+//   projectId: "basicreact-6fda3",
+//   storageBucket: "basicreact-6fda3.appspot.com",
+//   messagingSenderId: "611930053636",
+//   appId: "1:611930053636:web:1d153cc4a5f85d77ef6951"
+// };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -49,16 +49,15 @@ export const db = getFirestore();
 
 export const createUserDoc = async (userAuth, extraData = {})=> {
     const userDoc = doc(db, 'users', userAuth.uid );
-    console.log('userDoc', userDoc);
+    // console.log('userDoc', userDoc);
     const userSnapShot = await getDoc(userDoc);
-    console.log('userSnapShot', userSnapShot, userAuth);
+    // console.log('userSnapShot', userSnapShot, userAuth);
     const e = userSnapShot.exists();
 
 
 
-    console.log('E', e);
     if(!e){
-        console.log('creating new');
+        // console.log('creating new');
         try {
             const { displayName, email,  } = userAuth; 
             const createdAt = new Date();
@@ -69,7 +68,9 @@ export const createUserDoc = async (userAuth, extraData = {})=> {
         }
     }
 
-    return userDoc;
+    // return userDoc;
+    // required for saga
+    return userSnapShot;
 
 
 }
@@ -122,4 +123,15 @@ export const getCollectionAndDoc = async () => {
 
     return categoryMap;
 
+}
+
+export const getCurrentUser = () => {
+    return new Promise((resolve, reject)=>{
+        const subscribe = onAuthStateChanged(auth,
+            (authUser)=>{
+                resolve(authUser)
+                subscribe();
+            },reject
+            );
+    })
 }

@@ -8,8 +8,11 @@ import  Navigation  from './routes/navigation/navigation';
 import Authentication from './routes/authentication/authentication';
 import ShopRoutes from './routes/shop/shop-route.component';
 import Checkout from './Component/checkout/Checkout';
-import { onAuthStateListiener } from './utils/firebase.utils';
+import { onAuthStateListiener, getCurrentUser } from './utils/firebase.utils';
 import { userAction } from './store/userReducer/user-action';
+
+// check user call using saga
+import { check_user_signin } from './store/userReducer/user-action';
 
 const SomeApp = () => {
     return (
@@ -23,12 +26,17 @@ const App = () => {
     const dispatch =  useDispatch();
 
     useEffect(()=>{
-        const unsubscribe = onAuthStateListiener((user)=>{
-            console.log('user login status', user);
-            dispatch(userAction(user));
-        });
+        // const unsubscribe = onAuthStateListiener((user)=>{
+        //     console.log('user login status', user);
+        //     dispatch(userAction(user));
+        // });
         
-        return unsubscribe;
+        // return unsubscribe;
+        // getCurrentUser().then(user => console.log('///',user) )
+
+        dispatch(check_user_signin());
+
+
     }, []);
 
    return (

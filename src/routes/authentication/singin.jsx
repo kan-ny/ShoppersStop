@@ -5,6 +5,8 @@ import { signInAuthWithEmainAndPassword, signInWithGooglePopup } from "../../uti
 import { SignInContainer, ButtonsContainer } from './signin.styles.jsx';
 
 import { UserContext } from "../../context/user.context";
+import { useDispatch }  from 'react-redux';
+import { google_signin, email_signin } from "../../store/userReducer/user-action";
 
 
 const FormFields = {
@@ -14,6 +16,7 @@ const FormFields = {
 const Signin = () => {
   const [loginDetails, setLoginDetails] = useState(FormFields);
   const { email, password } = loginDetails;
+  const dispatch =useDispatch();
 
   const { setLoginUser } = useContext(UserContext);
 
@@ -26,8 +29,13 @@ const Signin = () => {
     event.preventDefault();
 
     try {
-      const auth = await signInAuthWithEmainAndPassword(email, password);
-      console.log('auth', auth);
+      // const auth = await signInAuthWithEmainAndPassword(email, password);
+      // console.log('auth', auth);
+
+      // saga
+      dispatch( email_signin(email, password) );
+
+
 
       // setLoginUser(auth.user);
 
@@ -39,11 +47,16 @@ const Signin = () => {
   };
 
 
-  const signinWithGoogle = async () => {
-    const response = await signInWithGooglePopup();
-    // const { setLoginUser } = useContext(UserContext);
-    // setLoginUser(response.user);
-    console.log('signinWithGoogle',response);
+  const signinWithGoogle = () => {
+    // const response = await signInWithGooglePopup();
+    // // const { setLoginUser } = useContext(UserContext);
+    // // setLoginUser(response.user);
+    // console.log('signinWithGoogle',response);
+
+    dispatch(google_signin());
+
+
+
 }
 
 

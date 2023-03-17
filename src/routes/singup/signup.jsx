@@ -3,6 +3,8 @@ import { createAuthUserWithEmailAndPassword, createUserDoc } from "../../utils/f
 import FormInput from "../../Component/from-input/form-input.component"; 
 import { SignUpContainer } from './signup.styles.jsx';
 import Button from "../../Component/button/Button.component";
+import { useDispatch } from "react-redux";
+import { signup_start } from "../../store/userReducer/user-action";
 
 const formFileds = {
     name: "",
@@ -12,6 +14,7 @@ const formFileds = {
 }
 
 const Singup = () => {
+    const dispatch = useDispatch();
 
     const [formData, setFormData] = useState(formFileds);
     const { name, email, pwd, cpwd } = formData;
@@ -33,12 +36,14 @@ const Singup = () => {
             return;
         };
         try {
-            console.log('formdata',formData);
-            const { user } = await createAuthUserWithEmailAndPassword(email, pwd);
-            console.log('user obj', user);
-            const createDoc = await createUserDoc(user, { displayName: name});
-            console.log('create user doc using signup with email and password', createDoc);
-            resetFormresetForm();
+            // console.log('formdata',formData);
+            // const { user } = await createAuthUserWithEmailAndPassword(email, pwd);
+            // console.log('user obj', user);
+            // const createDoc = await createUserDoc(user, { displayName: name});
+            // console.log('create user doc using signup with email and password', createDoc);
+            dispatch(signup_start(email, pwd, name));
+
+            // resetFormresetForm();
         } catch (error) {
 
             if(error.code === 'auth/email-already-in-use'){
