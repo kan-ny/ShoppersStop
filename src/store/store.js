@@ -48,7 +48,7 @@
 */
 
 
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { rootReducer } from './root-reducer';
 import logger from 'redux-logger';
 
@@ -60,5 +60,16 @@ export const store = configureStore({
     // toolkit default includes 3 middle ware by default 
     // 1. thunk (promise based action) 2. 3.
     // so are replacing default with loggers.
-    middleware: middleWares
+    
+    // middleware: middleWares
+
+
+    // modify the default middleware
+    middleware: (getDefaultMiddleware) => 
+    getDefaultMiddleware({
+        // serializableCheck check that action and reducers are plain js with constructor, function, 
+        serializableCheck: false
+    }).concat(middleWares) // add our custom middleware with default middleware
+
+
 })

@@ -14,6 +14,10 @@ import { userAction } from './store/userReducer/user-action';
 // check user call using saga
 import { check_user_signin } from './store/userReducer/user-action';
 
+
+// action from toolkit user Slice
+import { setCurrentUser } from './store/userReducer/user-reducer';
+
 const SomeApp = () => {
     return (
         <div>
@@ -26,15 +30,23 @@ const App = () => {
     const dispatch =  useDispatch();
 
     useEffect(()=>{
-        // const unsubscribe = onAuthStateListiener((user)=>{
-        //     console.log('user login status', user);
-        //     dispatch(userAction(user));
-        // });
+        const unsubscribe = onAuthStateListiener((user)=>{
+            console.log('user login status', user);
+            // dispatch(userAction(user));
+
+            // reduxjs toolkit
+            const pickekUser = user && ( ({accessToken, email}) => ({accessToken, email})(user));
+            console.log('reduxjs toolkit user action', pickekUser);
+            dispatch(setCurrentUser(user));
+        });
         
-        // return unsubscribe;
+        return unsubscribe;
+
         // getCurrentUser().then(user => console.log('///',user) )
 
-        dispatch(check_user_signin());
+        // dispatch(check_user_signin());
+
+
 
 
     }, []);
